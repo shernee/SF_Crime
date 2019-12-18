@@ -64,7 +64,7 @@ def make_plot(bar_source, line_source, dist, cat):
     bar.yaxis.formatter = NumeralTickFormatter(format = '0,0')
     
     line = figure(title ='Hourly Crime Rate w.r.t. the selected Districts and Categories', width =600, height =400)
-    line.multi_line(xs ='x', ys ='y', legend ='label', line_color ='color', line_width =2, source =line_source)
+    line.multi_line(xs ='x', ys ='y', legend_label ='label', line_color ='color', line_width =2, source =line_source)
     line.xaxis.axis_label = 'n-th Hour'
     line.yaxis.axis_label = 'Number of crimes'
     line.yaxis.formatter = NumeralTickFormatter(format = '0,0')
@@ -75,7 +75,7 @@ def make_plot(bar_source, line_source, dist, cat):
 # set up widgets    
 dist_head = PreText(text ='Select one or more Districts:',style ={'color':'Black', 'font-size':'large'})
 cat_selection = CheckboxGroup(labels = available_cat,active = [0])
-cat_text = PreText(text =f'The top 10 Categories of Crime in the selected District(s)', style ={'color':'green', 'font-size':'large'}, width =550)
+#cat_text = PreText(text =f'The top 10 Categories of Crime in the selected District(s)', style ={'color':'green', 'font-size':'large'}, width =550)
 cat_head = PreText(text ='Select one or more Categories:',style ={'color':'Black', 'font-size':'large'})
 
 #get initial data for the initial plot
@@ -125,8 +125,8 @@ cat_selection.on_change('active', update)
 
 
 # set up layout
-dist_column = column(WidgetBox(dist_head, dist_selection, height=600))
-cat_column = column(WidgetBox(cat_text, cat_head, cat_selection, height=600))
+dist_column = column(WidgetBox(dist_head, dist_selection, height=275))
+cat_column = column(WidgetBox(cat_head, cat_selection, height=275))
 sub_row = row(dist_column, cat_column)
 graph_row = row(bar, line)
 layout = column(sub_row, graph_row)
